@@ -87,45 +87,85 @@ def depthFirstSearch(problem):
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     """
     "*** YOUR CODE HERE ***"
-    print("Start:", problem.getStartState())
-    print("Is the start a goal?", problem.isGoalState(problem.getStartState()))
-    print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     from game import Directions
     n = Directions.NORTH
     s = Directions.SOUTH
     w = Directions.WEST
     e = Directions.EAST
 
-    """
-    ok so...
-    start at start
-    get successors of start, add them to the stack,
-    loop
-    take off stack
-    get successors of position
-    add to stack
-    loop
-    take off stack
-    """
     stack = util.Stack()
     position = problem.getStartState()
-    while True:
-        for x in problem.getSuccessors(position):
-            stack.push(x)
+    visited = []
+    path = []
+
+    # def dfs(successor):
+    #     if (problem.isGoalState(successor[0]) == True):
+    #         return
+
+    #     for x in problem.getSuccessors(successor[0]):
+    #         if(x[0] not in visited):
+    #             visited.append(successor[0])
+    #             stack.push(x)
+
+    #     dfs(stack.pop())
+
+    #     if(successor[1] == 'North'):
+    #         path.append(n)
+    #     elif(successor[1] == 'West'):
+    #         path.append(w)
+    #     elif(successor[1] == 'East'):
+    #         path.append(e)
+    #     elif(successor[1] == 'South'):
+    #         path.append(s)
+
+    # for x in problem.getSuccessors(problem.getStartState()):
+    #     stack.push(x)
+    # dfs(stack.pop())
+    # path.reverse()
         
-        print(stack.pop())
-        if(problem.isGoalState(position))
-        {
+    #whati fi  just try this shit
+    q = util.Stack()
+    pos = problem.getStartState()
+    for x in problem.getSuccessors(pos):
+        q.push(x)
+        visited.append(x[0])
+        break
 
-        }
-    
-    # if(problem.isGoalState()) 
-    # {
-    #     break
-    # }
+    while not q.isEmpty():
+        node = q.pop()
+        print(node)
+        if problem.isGoalState(node[0]):
+            break
+        s = problem.getSuccessors(node[0])
+        for y in s:
+            if y[0] not in visited:
+                q.push(y)
+                visited.append(y[0])
+                break
 
-    return []
-    """util.raiseNotDefined()"""
+    # while True:
+    #     #if here break
+    #     #set position as visited
+    #     visited.append(position)
+    #     for x in problem.getSuccessors(position):
+    #         if(x[0] not in visited):
+    #             stack.push(x)
+
+    #     #set the next node to visit
+    #     successor = stack.pop()
+    #     print(successor)
+    #     position = successor[0]
+    #     #if position not in successors of cur pos dont add it to path
+    #     if(successor[1] == 'North'):
+    #         path.append(n)
+    #     elif(successor[1] == 'West'):
+    #         path.append(w)
+    #     elif(successor[1] == 'East'):
+    #         path.append(e)
+    #     elif(successor[1] == 'South'):
+    #         path.append(s)
+
+    return path
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
